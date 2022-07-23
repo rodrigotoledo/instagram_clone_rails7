@@ -3,7 +3,7 @@ module HomeHelper
     {
       avatar: Faker::Avatar.image,
       address: Faker::Address.full_address,
-      company: Faker::Company.name,
+      company_name: Faker::Company.name,
       dob: Time.now,
       email: Faker::Internet.email,
       id: rand(100),

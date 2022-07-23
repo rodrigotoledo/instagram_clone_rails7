@@ -66,3 +66,5 @@ end
 
 gem "rails_heroicon"
 gem "faker", "~> 2.21"
+
+gem "devise", "~> 4.8"
