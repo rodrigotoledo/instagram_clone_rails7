@@ -1,0 +1,12 @@
+<div class="mt-4 ml-10">
+  <div class="flex justify-between text-sm mb-5">
+    <h3 class="text-sm font-bold text-gray-400">Suggestions for you</h3>
+    <%=button_tag 'See all', class: 'text-gray-600 font-semibold' %>
+  </div>
+
+  <div class="suggestions">
+    <% 10.times.each do %>
+      <%= render partial: 'components/suggestion', locals: {suggestion: suggestion} %>
+    <% end %>
+  </div>
+</div>
