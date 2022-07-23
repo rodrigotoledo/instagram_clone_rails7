@@ -13,4 +13,14 @@ module HomeHelper
       website: Faker::Internet.url
     }
   end
+
+  def post
+    {
+      id: rand(10000),
+      username: Faker::Internet.username,
+      user_image: Faker::Avatar.image,
+      image: Faker::LoremFlickr.image,
+      caption: "Subscribe now!"
+    }
+  end
 end
