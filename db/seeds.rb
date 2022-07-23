@@ -1,7 +1,7 @@
 company = Company.create(name: Faker::Company.name)
-user = User.create(company: company, name: 'Rodrigo Toledo', email: 'faker@test.com', address: Faker::Address.full_address, avatar: Faker::Avatar.image, phone: Faker::PhoneNumber.cell_phone_with_country_code, username: 'rtoledo_dev', website: Faker::Internet.url, password: 'aassdd', password_confirmation: 'aassdd')
+user_main = User.create(company: company, name: 'Rodrigo Toledo', email: 'faker@test.com', address: Faker::Address.full_address, avatar: Faker::Avatar.image, phone: Faker::PhoneNumber.cell_phone_with_country_code, username: 'rtoledo_dev', website: Faker::Internet.url, password: 'aassdd', password_confirmation: 'aassdd')
 10.times.each do
-  Post.create(user: user, title: Faker::Lorem.question, image: Faker::Avatar.image, caption: 'Lets build this faker instagram')
+  Post.create(user: user_main, title: Faker::Lorem.question, image: Faker::Avatar.image, caption: 'Lets build this faker instagram')
 end
 
 19.times.each do

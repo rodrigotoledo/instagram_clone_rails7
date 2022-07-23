@@ -1,10 +1,10 @@
 <div class="flex items-center justify-between mt-3">
-  <%=image_tag suggestion[:avatar], class: 'w-10 h-10 rounded-full border p-[2px]' %>
+  <%= image_tag user.avatar, class: "w-10 h-10 rounded-full border p-[2px]" %>
 
   <div class="flex-1 ml-4 ">
-    <h2 class="font-semibold text-sm"><%=suggestion[:username]%></h2>
-    <h3 class="text-xs text-gray-400">Works at <%=suggestion[:company_name]%></h3>
+    <h2 class="font-semibold text-sm"><%= user.username %></h2>
+    <h3 class="text-xs text-gray-400">Works at <%= user.company.name %></h3>
   </div>
 
-  <%=button_tag 'Follow', class: 'text-blue-400 text-sm font-bold'%>
+  <%= button_tag "Follow", class: "text-blue-400 text-sm font-bold" %>
 </div>

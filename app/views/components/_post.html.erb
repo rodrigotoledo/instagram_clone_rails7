@@ -1,11 +1,11 @@
 <div class="bg-white my-7 border rounded-sm">
   <div class="flex items-center p-5">
-    <%=image_tag post[:user_image], class: 'rounded-full w-12 h-12 object-contain border p-1 mr-3' %>
-    <p class="flex-1 font-bold"><%=post[:username]%></p>
+    <%= image_tag post.user.avatar, class: "rounded-full w-12 h-12 object-contain border p-1 mr-3" %>
+    <p class="flex-1 font-bold"><%= post.user.username %></p>
     <%= heroicon "dots-horizontal", class: "h-5" %>
   </div>
 
-  <%=image_tag post[:image], class: 'object-cover w-full' %>
+  <%= image_tag post.image, class: "object-cover w-full" %>
 
   <div class="flex justify-between px-4 pt-4">
     <div class="flex space-x-4">
@@ -17,14 +17,14 @@
   </div>
 
   <p class="p-5 truncate">
-    <span class="font-bold mr-1"><%=post[:username]%> </span><%=post[:caption]%>
+    <span class="font-bold mr-1"><%= post.user.username %> </span><%= post.caption %>
   </p>
 
   <div class="comments"></div>
 
   <%= form_tag root_path, method: :get, class: "flex items-center p-4" do %>
     <%= heroicon "emoji-happy", class: "h-7" %>
-    <%=text_field_tag :search, "", placeholder: 'Add comment', class: 'border-none flex-1 outline-none' %>
-    <%=button_tag 'Post', class: 'font-semibold text-blue-400' %>
+    <%= text_field_tag :search, "", placeholder: "Add comment", class: "border-none flex-1 outline-none" %>
+    <%= button_tag "Post", class: "font-semibold text-blue-400" %>
   <% end %>
 </div>
