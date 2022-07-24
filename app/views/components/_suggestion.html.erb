@@ -1,10 +1,14 @@
-<div class="flex items-center justify-between mt-3">
-  <%= link_to image_tag(user.avatar, class: "w-10 h-10 rounded-full border p-[2px]"), profile_path(user) %>
+<% current_user.suggestion_users.limit(5).each do |user| %>
+  <div class="flex items-center justify-between mt-3">
+    <%= link_to image_tag(user.avatar, class: "w-10 h-10 rounded-full border p-[2px]"), profile_path(user) %>
 
-  <div class="flex-1 ml-4 ">
-    <h2 class="font-semibold text-sm"><%= user.username %></h2>
-    <h3 class="text-xs text-gray-400">Works at <%= user.company.name %></h3>
+    <div class="flex-1 ml-4 ">
+      <h2 class="font-semibold text-sm"><%= user.username %></h2>
+      <h3 class="text-xs text-gray-400">Works at <%= user.company.name %></h3>
+    </div>
+    <%= form_for :following_user, url: following_users_path do |f| %>
+    <%= f.hidden_field :following_user_id, value: user.id %>
+    <%= f.submit "Follow", class: "text-blue-400 cursor-pointer text-sm font-bold" %>
+    <% end %>
   </div>
-
-  <%= button_tag "Follow", class: "text-blue-400 text-sm font-bold" %>
-</div>
+<% end %>
