@@ -1,6 +1,6 @@
 <% current_user.suggestion_users.limit(5).each do |user| %>
   <div class="flex items-center justify-between mt-3">
-    <%= link_to image_tag(user.avatar, class: "w-10 h-10 rounded-full border p-[2px]"), profile_path(user) %>
+    <%= link_to image_tag(user.avatar, class: "w-10 h-10 rounded-full border p-[2px]"), profile_path(user), "data-turbo-frame": "_top" %>
 
     <div class="flex-1 ml-4 ">
       <h2 class="font-semibold text-sm"><%= user.username %></h2>

@@ -6,6 +6,6 @@
 
   <%= turbo_stream_from :suggestions %>
   <%= turbo_frame_tag "suggestions_#{dom_id(current_user)}" do %>
-    <%= render partial: "components/suggestion" %>
+    <%= render partial: "components/suggestions_for_current_user" %>
   <% end %>
 </div>

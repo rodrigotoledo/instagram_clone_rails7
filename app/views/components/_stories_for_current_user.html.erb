@@ -1,0 +1,10 @@
+<% unless current_user.users.blank? %>
+  <div class="flex space-x-2 p-6 bg-white mt-8 border-gray-200 border rounded-sm overflow-x-scroll hide-scrollbar">
+    <% current_user.users.each do |user| %>
+      <div>
+        <%= link_to image_tag(user.avatar, class: "h-14 w-14 rounded-full p-[1.5px] border-red-500 border-2 object-contain hover:scale-110 transation transform duration-200 ease-out"), profile_path(user), "data-turbo-frame": "_top" %>
+        <p class="text-xs w-14 truncate text-center"><%= user.username %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
