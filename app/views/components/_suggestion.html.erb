@@ -1,5 +1,5 @@
 <div class="flex items-center justify-between mt-3">
-  <%= image_tag user.avatar, class: "w-10 h-10 rounded-full border p-[2px]" %>
+  <%= link_to image_tag(user.avatar, class: "w-10 h-10 rounded-full border p-[2px]"), profile_path(user) %>
 
   <div class="flex-1 ml-4 ">
     <h2 class="font-semibold text-sm"><%= user.username %></h2>
