@@ -1,6 +1,6 @@
 <div class='flex justify-between max-w-6xl mx-5 lg:mx-auto'>
-  <div class="relative items-center hidden lg:inline-grid w-24 cursor-pointer"><%= image_tag "https://links.papareact.com/ocw", layout: "fill", object_fit: "contain" %></div>
-  <div class="relative items-center lg:hidden w-10 flex-shrink-0 cursor-pointer"><%= image_tag "https://links.papareact.com/jjm", layout: "fill", object_fit: "contain" %></div>
+  <div class="relative items-center hidden lg:inline-grid w-24"><%= link_to image_tag("https://links.papareact.com/ocw", layout: "fill", object_fit: "contain"), root_path %></div>
+  <div class="relative items-center lg:hidden w-10 flex-shrink-0"><%= link_to image_tag("https://links.papareact.com/jjm", layout: "fill", object_fit: "contain"), root_path %></div>
 
   <div class="max-w-xs">
     <div class="relative mt-1 p-1 rounded-md border-2 border-gray-300 bg-gray-50">
@@ -12,7 +12,7 @@
   </div>
 
   <div class="flex items-center justify-end space-x-4">
-    <%= heroicon "home", variant: "solid", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
+    <%= link_to heroicon("home", variant: "solid", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out"), root_path %>
     <div class='h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out relative'>
       <%= heroicon "paper-airplane", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out rotate-45" %>
       <div class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">3</div>
@@ -21,6 +21,6 @@
     <%= heroicon "user-group", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "heart", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "menu", class: "h-6 md:hidden cursor-pointer" %>
-    <%= image_tag "https://links.papareact.com/3ke", alt: "profile picture", class: "h-10 rounded-full cursor-pointer" %>
+    <%= image_tag current_user.avatar, alt: "profile picture", class: "h-10 rounded-full cursor-pointer" %>
   </div>
 </div>

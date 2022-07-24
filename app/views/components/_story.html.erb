@@ -1,4 +1,4 @@
 <div>
-  <%= image_tag suggestion[:avatar], class: "h-14 w-14 rounded-full p-[1.5px] border-red-500 border-2 object-contain cursor-pointer hover:scale-110 transation transform duration-200 ease-out" %>
-  <p class="text-xs w-14 truncate text-center"><%= suggestion[:username] %></p>
+  <%= link_to image_tag(user.avatar, class: "h-14 w-14 rounded-full p-[1.5px] border-red-500 border-2 object-contain hover:scale-110 transation transform duration-200 ease-out"), profile_path(user) %>
+  <p class="text-xs w-14 truncate text-center"><%= user.username %></p>
 </div>
