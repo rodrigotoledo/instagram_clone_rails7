@@ -1,4 +1,6 @@
 <section class="col-span-2">
   <%= render "components/stories" %>
-  <%= render "components/posts" %>
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
 </section>
