@@ -13,10 +13,13 @@
 
   <div class="flex items-center justify-end space-x-4">
     <%= link_to heroicon("home", variant: "solid", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out"), root_path %>
+    <%= turbo_stream_from :likes_current_user %>
+    <%= turbo_frame_tag "likes_of_#{dom_id(current_user)}" do %>
     <div class='h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out relative'>
       <%= heroicon "paper-airplane", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out rotate-45" %>
-      <div class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">3</div>
+      <div id="<%="total_of_likes_#{dom_id(current_user)}" %>" class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white"><%=current_user.posts_likes_count%></div>
     </div>
+    <% end %>
     <%= heroicon "plus-circle", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "user-group", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "heart", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
