@@ -28,15 +28,12 @@
     <span class="font-bold mr-1"><%= post.user.username %> </span><%= post.caption %>
   </p>
 
-  <%= turbo_stream_from "post_comments_#{post.id}" %>
+  <%= turbo_stream_from "post_comments" %>
   <div id="post_comments_of_<%= post.id %>">
     <%= render partial: "components/post_comments", locals: { post: post } %>
   </div>
 
-
-  <%= form_tag root_path, method: :get, class: "flex items-center p-4" do %>
-    <%= heroicon "emoji-happy", class: "h-7" %>
-    <%= text_field_tag :search, "", placeholder: "Add comment", class: "border-none flex-1 outline-none" %>
-    <%= button_tag "Post", class: "font-semibold text-blue-400" %>
+  <%= turbo_frame_tag post_post_comments_path(post) do %>
+    <div id="post_comment_form_<%= post.id %>"><%= render partial: "post_comments/form", locals: { post: post } %></div>
   <% end %>
 </div>

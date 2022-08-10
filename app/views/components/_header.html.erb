@@ -23,6 +23,7 @@
     <%= heroicon "plus-circle", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "user-group", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "heart", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
+    <%= link_to heroicon("logout", class: "h-6 md:inline-flex hover:scale-125 duration-150 ease-out"), destroy_user_session_path, method: :delete %>
     <%= heroicon "menu", class: "h-6 md:hidden cursor-pointer" %>
     <%= image_tag current_user.avatar, alt: "profile picture", class: "h-10 rounded-full cursor-pointer" %>
   </div>
