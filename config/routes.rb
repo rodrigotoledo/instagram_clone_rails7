@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :profiles, only: :show
+  resources :profiles, only: [:show] do
+    collection do
+      post :search
+    end
+  end
   resources :following_users, only: :create
   resources :posts do
     resources :post_comments

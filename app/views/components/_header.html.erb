@@ -3,12 +3,15 @@
   <div class="relative items-center lg:hidden w-10 flex-shrink-0"><%= link_to image_tag("https://links.papareact.com/jjm", layout: "fill", object_fit: "contain"), root_path %></div>
 
   <div class="max-w-xs">
-    <div class="relative mt-1 p-1 rounded-md border-2 border-gray-300 bg-gray-50">
-      <div class="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
-        <%= heroicon "search", class: "h-5 w-5 text-gray-500" %>
-      </div>
-      <%= text_field_tag :sarch, "", placeholder: "Search", class: "bg-gray-50 w-full pl-10 sm:text-sm rounded-md focus:outline-none" %>
+    <div class="relative mt-1 p-1 rounded-md border-2 border-gray-200 bg-gray-200">
+      <%= form_with url: search_profiles_path, method: :post do |f| %>
+        <div class="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
+          <%= heroicon "search", class: "h-5 w-5 text-gray-500" %>
+        </div>
+        <%= f.search_field :search, onclick: "this.form.requestSubmit()", oninput: "this.form.requestSubmit()", placeholder: "Search", autocomplete: "off", class: "bg-gray-200 w-full pl-10 sm:text-sm rounded-md focus:outline-none" %>
+      <% end %>
     </div>
+    <div class="-mf-2" id="search_box_results"></div>
   </div>
 
   <div class="flex items-center justify-end space-x-4">
@@ -17,7 +20,7 @@
     <%= turbo_frame_tag "likes_of_#{dom_id(current_user)}" do %>
     <div class='h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out relative'>
       <%= heroicon "paper-airplane", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out rotate-45" %>
-      <div id="<%="total_of_likes_#{dom_id(current_user)}" %>" class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white"><%=current_user.posts_likes_count%></div>
+      <div id="<%= "total_of_likes_#{dom_id(current_user)}" %>" class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white"><%= current_user.posts_likes_count %></div>
     </div>
     <% end %>
     <%= heroicon "plus-circle", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
