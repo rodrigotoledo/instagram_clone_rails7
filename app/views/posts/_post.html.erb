@@ -1,0 +1,39 @@
+<div class="bg-white my-7 border rounded-sm">
+  <div class="flex items-center p-5">
+    <%= image_tag post.user.avatar, class: "rounded-full w-12 h-12 object-contain border p-1 mr-3" %>
+    <p class="flex-1 font-bold"><%= post.user.username %></p>
+    <%= heroicon "dots-horizontal", class: "h-5" %>
+  </div>
+
+  <%= image_tag post.image, class: "object-cover w-full" %>
+
+  <div class="flex justify-between px-4 pt-4">
+    <div class="flex space-x-4">
+      <div class="relative">
+        <%= turbo_stream_from post %>
+        <%= turbo_frame_tag like_post_path(post) do %>
+          <%= link_to heroicon("heart"), like_post_path(post), class: "h-7 hover:scale-125 transition-all duration-150 ease-out" %>
+          <div id="count_of_<%= post.id %>" class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">
+            <%= post.likes_count %>
+          </div>
+        <% end %>
+      </div>
+      <%= heroicon "chat", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
+      <%= heroicon "paper-airplane", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
+    </div>
+    <%= heroicon "bookmark", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
+  </div>
+
+  <p class="p-5 truncate">
+    <span class="font-bold mr-1"><%= post.user.username %> </span><%= post.caption %>
+  </p>
+
+  <%= turbo_stream_from "post_comments" %>
+  <div id="post_comments_of_<%= post.id %>">
+    <%= render partial: "components/post_comments", locals: { post: post } %>
+  </div>
+
+  <%= turbo_frame_tag post_post_comments_path(post) do %>
+    <div id="post_comment_form_<%= post.id %>"><%= render partial: "post_comments/form", locals: { post: post } %></div>
+  <% end %>
+</div>

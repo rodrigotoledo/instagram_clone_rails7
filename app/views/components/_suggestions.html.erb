@@ -1,0 +1,11 @@
+<div class="mt-4 ml-10">
+  <div class="flex justify-between text-sm mb-5">
+    <h3 class="text-sm font-bold text-gray-400">Suggestions for you</h3>
+    <%= button_tag "See all", class: "text-gray-600 font-semibold" %>
+  </div>
+
+  <%= turbo_stream_from :suggestions %>
+  <%= turbo_frame_tag "suggestions_#{dom_id(current_user)}" do %>
+    <%= render partial: "components/suggestions_for_current_user" %>
+  <% end %>
+</div>

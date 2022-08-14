@@ -1,0 +1,10 @@
+<% unless post.post_comments.blank? %>
+  <div class="ml-10">
+  <% post.post_comments.each do |post_comment| %>
+    <div class="flex items-center space-x-2 mb-3" >
+      <%= image_tag post_comment.user.avatar, class: "h-7 rounded-full" %>
+      <p class="text-sm flex-1"><span class="font-bold mr-2"><%= post_comment.user.username %></span><%= post_comment.comment %></p><span class="pr-5 text-xs"><%= l post_comment.created_at %></span>
+    </div>
+  <% end %>
+  </div>
+<% end %>
