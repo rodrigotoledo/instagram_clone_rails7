@@ -9,7 +9,15 @@
 
   <div class="flex justify-between px-4 pt-4">
     <div class="flex space-x-4">
-      <%= heroicon "heart", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
+      <div class="relative">
+        <%= turbo_stream_from post %>
+        <%= turbo_frame_tag like_post_path(post) do %>
+          <%= link_to heroicon("heart"), like_post_path(post), class: "h-7 hover:scale-125 transition-all duration-150 ease-out" %>
+          <div id="count_of_<%= post.id %>" class="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white">
+            <%= post.likes_count %>
+          </div>
+        <% end %>
+      </div>
       <%= heroicon "chat", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
       <%= heroicon "paper-airplane", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
     </div>
@@ -20,11 +28,12 @@
     <span class="font-bold mr-1"><%= post.user.username %> </span><%= post.caption %>
   </p>
 
-  <div class="comments"></div>
+  <%= turbo_stream_from "post_comments" %>
+  <div id="post_comments_of_<%= post.id %>">
+    <%= render partial: "components/post_comments", locals: { post: post } %>
+  </div>
 
-  <%= form_tag root_path, method: :get, class: "flex items-center p-4" do %>
-    <%= heroicon "emoji-happy", class: "h-7" %>
-    <%= text_field_tag :search, "", placeholder: "Add comment", class: "border-none flex-1 outline-none" %>
-    <%= button_tag "Post", class: "font-semibold text-blue-400" %>
+  <%= turbo_frame_tag post_post_comments_path(post) do %>
+    <div id="post_comment_form_<%= post.id %>"><%= render partial: "post_comments/form", locals: { post: post } %></div>
   <% end %>
 </div>

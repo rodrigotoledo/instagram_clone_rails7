@@ -4,9 +4,8 @@
     <%= button_tag "See all", class: "text-gray-600 font-semibold" %>
   </div>
 
-  <div class="">
-    <% current_user.suggestion_users.limit(5).each do |user| %>
-      <%= render partial: "components/suggestion", locals: { user: user } %>
-    <% end %>
-  </div>
+  <%= turbo_stream_from :suggestions %>
+  <%= turbo_frame_tag "suggestions_#{dom_id(current_user)}" do %>
+    <%= render partial: "components/suggestions_for_current_user" %>
+  <% end %>
 </div>
