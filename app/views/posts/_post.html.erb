@@ -2,7 +2,6 @@
   <div class="flex items-center p-5">
     <%= image_tag post.user.avatar, class: "rounded-full w-12 h-12 object-contain border p-1 mr-3" %>
     <p class="flex-1 font-bold"><%= post.user.username %></p>
-    <%= heroicon "dots-horizontal", class: "h-5" %>
   </div>
 
   <%= image_tag post.image, class: "object-cover w-full" %>
@@ -18,7 +17,7 @@
           </div>
         <% end %>
       </div>
-      <%= heroicon "chat", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
+      <%= heroicon "chat-bubble-bottom-center", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
       <%= heroicon "paper-airplane", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
     </div>
     <%= heroicon "bookmark", class: "h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out" %>
