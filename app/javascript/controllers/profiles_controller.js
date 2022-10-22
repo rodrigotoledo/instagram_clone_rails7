@@ -7,4 +7,11 @@ export default class extends Controller {
     search_box_results.innerHTML = ''
     search.value = ''
   }
+
+  search(event){
+    var form = document.getElementById("search_form")
+    form.submit()
+    event.preventDefault();
+
+  }
 }

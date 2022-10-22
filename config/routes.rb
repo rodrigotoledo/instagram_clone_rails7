@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :profiles, only: [:show] do
     collection do
-      post :search
+      get :search
     end
   end
   resources :following_users, only: :create
