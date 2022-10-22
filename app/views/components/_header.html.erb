@@ -6,7 +6,7 @@
     <div class="relative mt-1 p-1 rounded-md border-2 border-gray-200 bg-gray-200">
       <%= form_with url: search_profiles_path, method: :post do |f| %>
         <div class="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
-          <%= heroicon "search", class: "h-5 w-5 text-gray-500" %>
+          <%= heroicon "magnifying-glass", class: "h-5 w-5 text-gray-500" %>
         </div>
         <%= f.search_field :search, onclick: "this.form.requestSubmit()", oninput: "this.form.requestSubmit()", placeholder: "Search", autocomplete: "off", class: "bg-gray-200 w-full pl-10 sm:text-sm rounded-md focus:outline-none" %>
       <% end %>
@@ -26,8 +26,8 @@
     <%= heroicon "plus-circle", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "user-group", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "heart", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
-    <%= link_to heroicon("logout", class: "h-6 md:inline-flex hover:scale-125 duration-150 ease-out"), destroy_user_session_path, method: :delete %>
-    <%= heroicon "menu", class: "h-6 md:hidden cursor-pointer" %>
+    <%= link_to heroicon("arrow-left-on-rectangle", class: "h-6 md:inline-flex hover:scale-125 duration-150 ease-out"), destroy_user_session_path, method: :delete %>
+    <%= heroicon "bars-3", class: "h-6 md:hidden cursor-pointer" %>
     <%= image_tag current_user.avatar, alt: "profile picture", class: "h-10 rounded-full cursor-pointer" %>
   </div>
 </div>
