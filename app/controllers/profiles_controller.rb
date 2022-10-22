@@ -2,13 +2,12 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: :show
 
   def search
-    if params[:search].present?
-      @users = User.where("username ILIKE ?","%#{params[:search]}%").order(:username)
-    else
-      @users = User.take(10)
-    end
+    @users = params[:query].present? ? User.where('username ILIKE ?', "%#{params[:query]}%").order(:username) : []
     respond_to do |format|
-      format.turbo_stream
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update('results', partial: 'profiles/results')
+      end
     end
   end
 
@@ -18,7 +17,8 @@ class ProfilesController < ApplicationController
   end
 
   protected
-    def set_user
-      @user = User.find(params[:id])
-    end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 end

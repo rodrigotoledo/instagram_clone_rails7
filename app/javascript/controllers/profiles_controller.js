@@ -3,15 +3,18 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   close(event) {
     let search = document.getElementById('search')
-    let search_box_results = document.getElementById('search_box_results')
-    search_box_results.innerHTML = ''
+    let results = document.getElementById('results')
+    results.innerHTML = ''
     search.value = ''
   }
 
-  search(event){
-    var form = document.getElementById("search_form")
-    form.submit()
-    event.preventDefault();
-
+  search(element){
+    fetch('/profiles/search/?query='+element.target.value, {
+      method: 'GET',
+      headers: {
+        Accept: 'text/vnd.turbo-stream.html'
+      }
+    }).then(r => r.text())
+    .then(html => Turbo.renderStreamMessage(html))
   }
 }

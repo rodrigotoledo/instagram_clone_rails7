@@ -1,4 +1,4 @@
-<%= turbo_stream.update "search_box_results" do %>
+<%= turbo_frame_tag :results do %>
   <% if @users.present? %>
   <div class="absolute -ml-[60px] m-5 border mt-4 w-[350px] bg-white">
     <div class="w-auto">
