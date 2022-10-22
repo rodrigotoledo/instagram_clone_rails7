@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: instagram_clone_production
+  url: <%= ENV['DATABASE_URL'] %>
