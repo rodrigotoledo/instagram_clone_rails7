@@ -5,9 +5,7 @@ class ProfilesController < ApplicationController
     @users = params[:query].present? ? User.where('username ILIKE ?', "%#{params[:query]}%").order(:username) : []
     respond_to do |format|
       format.html
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.update('results', partial: 'profiles/results')
-      end
+      format.turbo_stream
     end
   end
 

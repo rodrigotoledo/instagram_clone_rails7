@@ -1,6 +1,10 @@
-<%= form_with url: search_profiles_path, method: :get, html: { id: :search_form } do %>
-  <div class="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
-    <%= heroicon "magnifying-glass", class: "h-5 w-5 text-gray-500" %>
+<%= turbo_frame_tag search_profiles_path do %>
+    <div class="relative mt-1 p-1 rounded-md border-2 border-gray-200 bg-gray-200">
+    <%= form_with url: search_profiles_path, format: :post, html: { id: :search_form } do %>
+      <div class="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
+        <%= heroicon "magnifying-glass", class: "h-5 w-5 text-gray-500" %>
+      </div>
+      <%= search_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "bg-gray-200 w-full pl-10 sm:text-sm rounded-md focus:outline-none", data: { controller: :profiles, action: "click->profiles#search keyup->profiles#search" } %>
+    <% end %>
   </div>
-  <%= search_field_tag :search, "", placeholder: "Search", autocomplete: "off", class: "bg-gray-200 w-full pl-10 sm:text-sm rounded-md focus:outline-none", data: { controller: :profiles, action: "click->profiles#search keyup->profiles#search" } %>
 <% end %>
