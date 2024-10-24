@@ -1,5 +1,5 @@
 <%= form_with model: [post, PostComment.new], class: "flex items-center p-4" do |f| %>
   <%= heroicon "face-smile", class: "h-7" %>
-  <%= f.text_field :comment, placeholder: "Add comment", class: "border-none flex-1 outline-none" %>
+  <%= f.text_field :comment, placeholder: "Add comment", class: "flex-1 outline-none mx-2 rounded-md focus:ring-transparent focus:border-solid focus:border-[#363636] bg-black border-[#363636] border-1" %>
   <%= f.submit "Post", class: "font-semibold text-blue-400" %>
 <% end %>

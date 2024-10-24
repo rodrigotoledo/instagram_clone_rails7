@@ -1,4 +1,4 @@
-<div class='flex justify-between max-w-6xl mx-5 lg:mx-auto'>
+<div class='flex justify-between max-w-6xl mx-5 lg:mx-auto bg-black text-white'>
   <div class="relative items-center hidden lg:inline-grid w-24"><%= link_to image_tag("https://links.papareact.com/ocw", layout: "fill", object_fit: "contain"), root_path %></div>
   <div class="relative items-center lg:hidden w-10 flex-shrink-0"><%= link_to image_tag("https://links.papareact.com/jjm", layout: "fill", object_fit: "contain"), root_path %></div>
 
@@ -17,7 +17,7 @@
     <%= heroicon "plus-circle", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "user-group", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
     <%= heroicon "heart", class: "h-6 hidden md:inline-flex cursor-pointer hover:scale-125 duration-150 ease-out" %>
-    <%= link_to heroicon("arrow-left-on-rectangle", class: "h-6 md:inline-flex hover:scale-125 duration-150 ease-out"), destroy_user_session_path, method: :delete %>
+    <%= link_to heroicon("arrow-left-on-rectangle", class: "h-6 md:inline-flex hover:scale-125 duration-150 ease-out"), session_path, data: {turbo_method: :delete} %>
     <%= heroicon "bars-3", class: "h-6 md:hidden cursor-pointer" %>
     <%= image_tag current_user.avatar, alt: "profile picture", class: "h-10 rounded-full cursor-pointer" %>
   </div>
