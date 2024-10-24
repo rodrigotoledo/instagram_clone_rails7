@@ -1,4 +1,4 @@
-class CreateFollowingUsers < ActiveRecord::Migration[7.0]
+class CreateFollowingUsers < ActiveRecord::Migration[8.1]
   def change
     create_table :following_users do |t|
       t.references :user, null: false, foreign_key: true
