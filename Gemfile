@@ -1,81 +1,169 @@
 source "https://rubygems.org"
 
-# Use main development branch of Rails
+# Rails
 gem "rails", github: "rails/rails", branch: "main"
-gem "propshaft"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-
+# Database
 gem "sqlite3", ">= 2.1"
+# gem "pg", "~> 1.1"
 
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma"
+# Web server
+gem "puma", ">= 5.0.3"
 
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# Asset management
+gem "propshaft"
+# gem "sprockets-rails", ">= 2.0.0", require: false  # May conflict with Rails 8
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+# Hotwire
 gem "turbo-rails"
-
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+gem "importmap-rails", ">= 1.2.3"
+gem "tailwindcss-rails"
+# gem "dartsass-rails"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
-# Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
-
+# Caching and Queuing
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-gem "bcrypt", "~> 3.1.7"
+# Authentication and Security
+gem "bcrypt", "~> 3.1.11", require: false
+gem "jwt", "~> 2.5"
+gem "email_validator"
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+# Utilities
+gem "redis", ">= 4.0.1", require: false
+gem "redis-namespace"
+gem "launchy"
+gem "prism"
+gem "useragent", require: false
 
+# Performance
+gem "rack-cache", "~> 1.2"
+gem "rack-cors"
+
+# Rails enhancements
+gem "kamal", require: false
 gem "thruster", require: false
 
-# Use Sass to process CSS
-# gem "sassc-rails"
+# Windows platform gems
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "wdm", ">= 0.1.0", platforms: [:windows]
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+# Essential Gems
+gem "bootsnap", ">= 1.4.4", require: false
+# gem "webrick", require: false
+# gem "jbuilder", require: false
 
+# HTTP and WebSocket Clients
+gem "aws-sdk-sns", require: false
+
+# Icon Libraries
+gem "rails_heroicon"
+
+# Platform-specific Gems
+gem "libxml-ruby", platforms: :ruby
+gem "connection_pool", require: false
+gem "rexml", require: false
+gem "msgpack", ">= 1.7.0", require: false
+
+# Version control of rack
+rack_version = ENV.fetch("RACK", "~> 3.0")
+if rack_version != "head"
+  gem "rack", rack_version
+else
+  gem "rack", git: "https://github.com/rack/rack.git", branch: "main"
+end
+
+# Development and Test
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "faker"
+
+  gem "webmock"
+  gem "httpclient", github: "nahi/httpclient", branch: "master", require: false
+  gem "websocket-client-simple", github: "matthewd/websocket-client-simple", branch: "close-race", require: false
+
+  gem "dotenv-rails"
+  gem "dotenv"
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "pry"
 
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
-
-
-  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  # Static analysis for security vulnerabilities
   gem "brakeman", require: false
+
+  # Development tools
   gem "annotate"
   gem "factory_bot_rails"
   gem "foreman"
   gem "letter_opener"
   gem "letter_opener_web"
-  gem 'rufo'
+  gem "rufo"
+  gem "bundler-audit"
+  gem "rspec-rails"
+  gem "guard-rspec", require: false
 end
 
+# Development only
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "hotwire-spark"
+  # gem "rack-mini-profiler"  # May conflict with Rails 8
+  # gem "spring"              # May conflict with Rails 8
 end
 
-gem "rails_heroicon"
-gem "faker"
-gem "tailwindcss-rails"
+# Test only
+group :test do
+  gem "database_cleaner-active_record"
+  gem "rspec-json_expectations"
+  gem "shoulda-matchers"
+  gem "simplecov", require: false
+end
+
+# Linting
+group :lint do
+  gem "syntax_tree", "6.1.1", require: false
+end
+
+group :rubocop do
+  gem "rubocop", ">= 1.25.1", require: false
+  gem "rubocop-packaging", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-md", require: false
+  gem "rubocop-factory_bot"
+  gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rspec"
+end
+
+group :mdl do
+  gem "mdl", "!= 0.13.0", require: false
+end
+
+# Documentation
+group :doc do
+  gem "sdoc", git: "https://github.com/rails/sdoc.git", branch: "main"
+  gem "rdoc", "~> 6.7"
+  gem "redcarpet", "~> 3.2.3", platforms: :ruby
+  gem "w3c_validators", "~> 1.3.6"
+  gem "rouge"
+  gem "rubyzip", "~> 2.0"
+end
+
+# Background Jobs
+group :job do
+  gem "resque", require: false
+  gem "resque-scheduler", require: false
+  gem "sidekiq", require: false
+  gem "sucker_punch", require: false
+  gem "queue_classic", ">= 4.0.0", require: false, platforms: :ruby
+  gem "sneakers", require: false
+  gem "backburner", require: false
+end
+
+# Storage
+group :storage do
+  gem "aws-sdk-s3", require: false
+  gem "google-cloud-storage", "~> 1.11", require: false
+  gem "azure-storage-blob", "~> 2.0", require: false
+  gem "image_processing", "~> 1.2"
+end
